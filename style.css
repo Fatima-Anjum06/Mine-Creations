@@ -45,7 +45,7 @@ nav {
   transition: 0.3s;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 300px; /* ensures consistent size */
+  max-width: 500px; /* ensures consistent size */
 }
 
 .card:hover {
@@ -54,8 +54,8 @@ nav {
 
 /* Card Images */
 .card img {
-  width: 250px;
-  height: 250px;
+  width: 600px;
+  height: auto;
   object-fit: cover; /* crops excess to fit box */
   border-radius: 10px;
   cursor: pointer;
