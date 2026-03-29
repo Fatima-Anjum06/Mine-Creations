@@ -26,10 +26,11 @@
       background: #1e293b;
     }
 
+
     /* Card */
     .card {
       background: #1e293b;
-      padding: 20px; /* Increased padding */
+      padding: 15px;
       border-radius: 12px;
       text-align: center;
       transition: 0.3s;
@@ -42,38 +43,26 @@
     }
 
     .card img {
-      width: 100%; /* Responsive width */
-      max-width: 400px;
-      height: auto; /* Changed from 600px to auto to prevent stretching */
+      width: 400px;
+      height: 600px;
       object-fit: cover;
       border-radius: 10px;
     }
 
-    /* Increased Bag Name Size */
-    .card h2 {
-      font-size: 28px; 
-      margin: 15px 0 5px 0;
-      color: white;
-    }
-
-    /* Increased Price Size */
     .card p {
       color: #38bdf8;
-      font-size: 22px; 
-      font-weight: bold;
     }
 
     /* Buttons */
     button {
-      margin-top: 15px;
-      padding: 12px 24px;
+      margin-top: 10px;
+      padding: 10px 18px;
       border: none;
       border-radius: 8px;
       background: #38bdf8;
       color: black;
       cursor: pointer;
       font-weight: bold;
-      font-size: 16px;
       transition: 0.3s;
     }
 
@@ -85,9 +74,9 @@
     #lightbox {
       display: none;
       position: fixed;
-      top: 0; left: 0;
+      top:0; left:0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -95,28 +84,24 @@
     }
 
     #lightbox img {
-      width: 90%;
-      max-width: 600px;
-      max-height: 80vh;
+      width: 600px;
+      height: 600px;
       object-fit: contain;
       border-radius: 10px;
       margin: 0 20px;
     }
 
-    /* UPDATED: Larger Cross Sign positioned lower */
     #lightbox span {
       position: absolute;
-      top: 50px;       /* Moved down so it's not hidden by status bars */
-      right: 30px;     /* Inward from edge */
-      font-size: 50px; /* Much larger */
-      font-weight: bold;
+      top: 20px;
+      right: 40px;
+      font-size: 2rem;
       color: white;
       cursor: pointer;
-      user-select: none;
     }
 
     #lightbox .prev, #lightbox .next {
-      font-size: 3rem;
+      font-size: 2rem;
       color: white;
       background: transparent;
       border: none;
@@ -135,7 +120,6 @@
     .category h2 {
       margin-bottom: 15px;
       color: #38bdf8;
-      font-size: 32px; /* Increased category heading */
     }
 
     html {
@@ -173,7 +157,7 @@
     <div class="card" onclick="openLightbox(['images/purseE-1.jpeg','images/purseE-2.jpeg','images/purseE-3.jpeg','images/purseE-4.jpeg'])">
       <img src="images/purseE-1.jpeg">
       <h3>Pink Plush</h3>
-      <p>PKR 1200</p>
+      <p>PKR 1550</p>
       <button onclick="event.stopPropagation(); orderNow('Pink Plush')">Buy Now</button>
     </div>
 
@@ -260,11 +244,11 @@
       <button onclick="event.stopPropagation(); orderNow('Pink Baby Bag')">Buy Now</button>
     </div>
 
-    <div class="card" onclick="openLightbox(['images/purseK-1.jpeg','images/purseK-2.jpeg','images/purseK-3.jpeg'])">
+    <div class="card" onclick="openLightbox(['images/purseK-1.jpeg','images/purseK-2.jpeg','images/purseK-3.jpeg','images/purseK-4.jpeg'])">
       <img src="images/purseK-1.jpeg">
       <h3>Skin Edition</h3>
       <p>PKR 1500</p>
-      <button onclick="event.stopPropagation(); orderNow('Skin Edition')">Buy Now</button>
+      <button onclick="event.stopPropagation(); orderNow('Pink Baby Bag')">Buy Now</button>
     </div>
 
   </div>
