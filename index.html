@@ -93,11 +93,14 @@
 
     #lightbox span {
       position: absolute;
-      top: 20px;
-      right: 40px;
-      font-size: 2rem;
+      top: 60px;        /* Moves it down from the top edge */
+      right: 30px;      /* Moves it slightly in from the right edge */
+      font-size: 60px;  /* Makes the X larger */
+      font-weight: bold;
       color: white;
       cursor: pointer;
+      user-select: none; /* Prevents selecting the text when clicking fast */
+      z-index: 1001;     /* Ensures it stays above the image */
     }
 
     #lightbox .prev, #lightbox .next {
