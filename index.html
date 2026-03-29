@@ -346,6 +346,8 @@
 <script>
 let currentImages = [];
 let currentIndex = 0;
+let touchstartX = 0;
+let touchendX = 0;
 
 function openLightbox(images) {
   currentImages = images;
@@ -354,11 +356,27 @@ function openLightbox(images) {
   const lightboxImg = document.getElementById('lightbox-img');
   lightbox.style.display = 'flex';
   lightboxImg.src = currentImages[currentIndex];
+
+  // 1. MOBILE BACK BUTTON FIX
+  // Push a state so the back button closes the lightbox instead of the website
+  history.pushState({ lightboxOpen: true }, "");
 }
 
 function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox.style.display === 'flex') {
+    lightbox.style.display = 'none';
+    // 2. Sync history if closed via X button
+    if (window.history.state && window.history.state.lightboxOpen) {
+      window.history.back();
+    }
+  }
 }
+
+// 3. LISTEN FOR MOBILE BACK BUTTON
+window.onpopstate = function (event) {
+  document.getElementById('lightbox').style.display = 'none';
+};
 
 function nextImage() {
   currentIndex = (currentIndex + 1) % currentImages.length;
@@ -370,23 +388,31 @@ function prevImage() {
   document.getElementById('lightbox-img').src = currentImages[currentIndex];
 }
 
+// 4. MOBILE SWIPE LOGIC
+const lightboxEl = document.getElementById('lightbox');
+
+lightboxEl.addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+lightboxEl.addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX;
+  if (touchendX < touchstartX - 50) nextImage(); // Swipe Left
+  if (touchendX > touchstartX + 50) prevImage(); // Swipe Right
+}, {passive: true});
+
 // Arrow key navigation
 document.addEventListener('keydown', function(event) {
   const lightbox = document.getElementById('lightbox');
   if (lightbox.style.display === 'flex') {
-    if (event.key === 'ArrowRight') {
-      nextImage();
-    } else if (event.key === 'ArrowLeft') {
-      prevImage();
-    } else if (event.key === 'Escape') {
-      closeLightbox();
-    }
+    if (event.key === 'ArrowRight') nextImage();
+    else if (event.key === 'ArrowLeft') prevImage();
+    else if (event.key === 'Escape') closeLightbox();
   }
 });
 
-// WhatsApp Order Function
 function orderNow(productName) {
-  const phoneNumber = "+923005257363"; // your WhatsApp number
+  const phoneNumber = "+923005257363";
   const message = "Hello! I want to buy: " + productName;
   const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
   window.open(url, "_blank");
